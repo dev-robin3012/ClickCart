@@ -1,0 +1,31 @@
+.markdown h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.markdown ul {
+  margin-left: 20px;
+  list-style: disc;
+}
+
+.markdown del bdi {
+  font-size: 18px;
+  color: gray;
+}
+
+.markdown ins,
+.markdown bdi {
+  font-size: 36px;
+  text-decoration: none;
+  font-weight: 700;
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .markdown h2 {
+    font-size: 24px;
+  }
+  .markdown del bdi {
+    font-size: 24px;
+  }
+}
