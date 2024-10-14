@@ -16,7 +16,6 @@ import "@fontsource/open-sans/700.css";
 import "@fontsource/satisfy";
 
 // base css file
-// import DefaultLayout from "@/layout";
 import Layout from "@/layout";
 import "@/styles/custom-plugins.css";
 import "@/styles/rc-drawer.css";
