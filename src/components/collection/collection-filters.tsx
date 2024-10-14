@@ -1,6 +1,6 @@
-import { useCollectionsQuery } from "@framework/collection/get-all-collection";
-import ActiveLink from "@components/ui/active-link";
-import { ROUTES } from "@utils/routes";
+import ActiveLink from "@/components/ui/active-link";
+import { useCollectionsQuery } from "@/framework/basic-rest/collection/get-all-collection";
+import { ROUTES } from "@/utils/routes";
 import { useRouter } from "next/router";
 
 export const CollectionFilters: React.FC = () => {

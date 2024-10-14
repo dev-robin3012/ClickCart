@@ -2,6 +2,7 @@ import { DefaultSeo } from "@/components/common/default-seo";
 import ContextWrapper from "@/contexts";
 import { getDirection } from "@/utils/get-direction";
 import { AnimatePresence } from "framer-motion";
+import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -15,6 +16,8 @@ import "@fontsource/open-sans/700.css";
 import "@fontsource/satisfy";
 
 // base css file
+// import DefaultLayout from "@/layout";
+import Layout from "@/layout";
 import "@/styles/custom-plugins.css";
 import "@/styles/rc-drawer.css";
 import "@/styles/scrollbar.css";
@@ -29,10 +32,6 @@ function handleExitComplete() {
   }
 }
 
-function Noop({ children }: React.PropsWithChildren<{}>) {
-  return <>{children}</>;
-}
-
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(() => new QueryClient());
 
@@ -44,20 +43,23 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
     document.documentElement.dir = dir;
   }, [dir]);
 
-  const Layout = (Component as any).Layout || Noop;
-
   return (
     <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
       <QueryClientProvider client={queryClient}>
         {/* @ts-ignore */}
         <Hydrate state={pageProps?.dehydratedState}>
-          <ContextWrapper>
-            <Layout pageProps={pageProps}>
-              <DefaultSeo />
-              <Component {...pageProps} key={router.route} />
-              <ToastContainer />
-            </Layout>
-          </ContextWrapper>
+          <SessionProvider>
+            <ContextWrapper>
+              <Layout
+                individualLayout={(Component as any).Layout}
+                // pageProps={pageProps}
+              >
+                <DefaultSeo />
+                <Component {...pageProps} key={router.route} />
+                <ToastContainer />
+              </Layout>
+            </ContextWrapper>
+          </SessionProvider>
         </Hydrate>
       </QueryClientProvider>
     </AnimatePresence>

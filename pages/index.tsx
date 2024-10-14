@@ -1,4 +1,3 @@
-import Layout from "@/layout";
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 
@@ -62,8 +61,6 @@ export default function Home({ theme }: { theme: string }) {
       return null;
   }
 }
-
-Home.Layout = Layout;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   // const theme = await get("theme");

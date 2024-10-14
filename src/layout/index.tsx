@@ -1,6 +1,8 @@
 import CookieBar from "@/components/common/cookie-bar";
+import Typography from "@/components/typography";
 import Button from "@/components/ui/button";
 import { useAcceptCookies } from "@/utils/use-accept-cookies";
+import { useSession } from "next-auth/react";
 import { NextSeo } from "next-seo";
 import { FC, PropsWithChildren } from "react";
 import Footer from "./footer/footer";
@@ -8,13 +10,30 @@ import Header from "./header";
 import MobileNavigation from "./mobile-navigation/mobile-navigation";
 
 interface Props extends PropsWithChildren {
-  pageProps: any;
+  // pageProps: any;
+  individualLayout: any;
 }
 
-const Layout: FC<Props> = ({ children, pageProps }) => {
+const Layout: FC<Props> = ({
+  children,
+  individualLayout: IndividualLayout,
+}) => {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
+  const { status, data } = useSession();
 
-  const theme = pageProps.theme;
+  if (status === "loading") {
+    return (
+      <main className="flex items-center justify-center h-[100dvh] ">
+        <Typography variant="h2">Loading...</Typography>
+      </main>
+    );
+  }
+
+  if (IndividualLayout) {
+    return <IndividualLayout>{children}</IndividualLayout>;
+  }
+
+  // const theme = pageProps.theme;
 
   return (
     <>
@@ -73,14 +92,6 @@ const Layout: FC<Props> = ({ children, pageProps }) => {
           }
         />
       </div>
-
-      {/* {theme === "contemporary" ? (
-        <LayoutThree>{children}</LayoutThree>
-      ) : theme === "elegant" || theme === "refined" ? (
-        <LayoutTwo>{children}</LayoutTwo>
-      ) : (
-        <LayoutOne>{children}</LayoutOne>
-      )} */}
     </>
   );
 };

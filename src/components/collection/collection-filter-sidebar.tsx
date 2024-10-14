@@ -1,8 +1,8 @@
-import Scrollbar from "@components/common/scrollbar";
-import { useUI } from "@contexts/ui.context";
-import { IoArrowBack, IoArrowForward } from "react-icons/io5";
-import { getDirection } from "@utils/get-direction";
+import Scrollbar from "@/components/common/scrollbar";
+import { useUI } from "@/contexts/ui.context";
+import { getDirection } from "@/utils/get-direction";
 import { useRouter } from "next/router";
+import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 import { CollectionFilters } from "./collection-filters";
 
 const CollectionFilterSidebar = () => {

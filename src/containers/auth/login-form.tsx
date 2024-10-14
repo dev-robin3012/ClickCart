@@ -4,6 +4,7 @@ import Logo from "@/components/ui/logo";
 import PasswordInput from "@/components/ui/password-input";
 import { LoginInputType } from "@/framework/basic-rest/auth/use-login";
 import useAuth from "@/hooks/useAuth";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { ImFacebook2, ImGoogle2 } from "react-icons/im";
@@ -17,12 +18,8 @@ const LoginForm: React.FC = () => {
     formState: { errors },
   } = useForm<LoginInputType>();
 
-  function handelSocialLogin() {
-    return;
-  }
-
   return (
-    <div className="overflow-hidden bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300 py-5 px-5 sm:px-8">
+    <div className="overflow-hidden my-16 lg:my-20 bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300 py-5 px-5 sm:px-8">
       <div className="text-center mb-6 pt-2.5">
         <Logo />
         <p className="text-sm md:text-base text-body mt-2 mb-8 sm:mb-10">
@@ -104,7 +101,7 @@ const LoginForm: React.FC = () => {
         // loading={loading}
         disabled={loading}
         className="h-11 md:h-12 w-full mt-2.5 bg-facebook hover:bg-facebookHover"
-        onClick={handelSocialLogin}
+        // onClick={handelSocialLogin}
       >
         <ImFacebook2 className="text-sm sm:text-base me-1.5" />
         Login With Facebook
@@ -113,7 +110,7 @@ const LoginForm: React.FC = () => {
         // loading={loading}
         disabled={loading}
         className="h-11 md:h-12 w-full mt-2.5 bg-google hover:bg-googleHover"
-        onClick={handelSocialLogin}
+        onClick={() => signIn("google")}
       >
         <ImGoogle2 className="text-sm sm:text-base me-1.5" />
         Login With Google

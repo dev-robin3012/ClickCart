@@ -1,7 +1,7 @@
-import nextClient from "@/api-config/next-client";
 import woo_client from "@/api-config/woo-client";
 import { AuthContext } from "@/contexts/index";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -51,13 +51,15 @@ const useAuth = () => {
   const handleLogin = async (payload: any) => {
     setLoading(true);
     try {
-      const { data } = await nextClient.post("login", payload);
-      await fetchUserInfo(data.user_id);
-      setCookie("chawkbazar:user_id", data.user_id);
-      router.back();
-      toast.success(data.message);
+      signIn("credentials", { ...payload, redirect: false });
+
+      // const { data } = await nextClient.post("login", payload);
+      // await fetchUserInfo(data.user_id);
+      // setCookie("chawkbazar:user_id", data.user_id);
+      // router.back();
+      // toast.success(data.message);
       setLoading(false);
-      router.push("/");
+      // router.push("/");
     } catch (error: any) {
       toast.error(error?.response?.data || "Login failed");
       console.log("login failed for ==> ", error);

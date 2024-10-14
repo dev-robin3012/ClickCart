@@ -1,11 +1,11 @@
-import { Drawer } from "@components/common/drawer";
-import { MdCollectionsBookmark } from "react-icons/md";
-import Text from "@components/ui/text";
-import { useUI } from "@contexts/ui.context";
+import { Drawer } from "@/components/common/drawer";
+import motionProps from "@/components/common/drawer/motion";
+import Text from "@/components/ui/text";
+import { useUI } from "@/contexts/ui.context";
+import { getDirection } from "@/utils/get-direction";
 import { useRouter } from "next/router";
-import { getDirection } from "@utils/get-direction";
+import { MdCollectionsBookmark } from "react-icons/md";
 import CollectionFilterSidebar from "./collection-filter-sidebar";
-import motionProps from "@components/common/drawer/motion";
 
 const CollectionTopBar = () => {
   const { openFilter, displayFilter, closeFilter } = useUI();

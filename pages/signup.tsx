@@ -1,7 +1,6 @@
-import Container from "@components/ui/container";
-import Layout from "@layout/layout-one";
-import SignUpForm from "@containers/auth/sign-up-form";
-import Subscription from "@components/common/subscription";
+import Subscription from "@/components/common/subscription";
+import Container from "@/components/ui/container";
+import SignUpForm from "@/containers/auth/sign-up-form";
 
 export default function SignUpPage() {
   return (
@@ -16,5 +15,3 @@ export default function SignUpPage() {
     </>
   );
 }
-
-SignUpPage.Layout = Layout;
