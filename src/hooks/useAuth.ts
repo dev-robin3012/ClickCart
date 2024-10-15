@@ -50,8 +50,11 @@ const useAuth = () => {
 
   const handleLogin = async (payload: any) => {
     setLoading(true);
+
+    console.log(payload);
+
     try {
-      signIn("credentials", { ...payload, redirect: false });
+      signIn("credentials", { ...payload });
 
       // const { data } = await nextClient.post("login", payload);
       // await fetchUserInfo(data.user_id);
@@ -59,7 +62,6 @@ const useAuth = () => {
       // router.back();
       // toast.success(data.message);
       setLoading(false);
-      // router.push("/");
     } catch (error: any) {
       toast.error(error?.response?.data || "Login failed");
       console.log("login failed for ==> ", error);

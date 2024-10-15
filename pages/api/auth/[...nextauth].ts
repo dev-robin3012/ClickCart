@@ -10,12 +10,13 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
+      type: "credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       authorize: async (_, req) => {
-        console.log("log from credentials provider", req.body);
+        // TODO: Authenticate the credentials
 
         return {
           id: "37483",
@@ -31,9 +32,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: NEXTAUTH_SECRET,
-  // callbacks: {
-
-  // }
+  pages: { signIn: "/signin" },
 };
 
 export default NextAuth(authOptions);

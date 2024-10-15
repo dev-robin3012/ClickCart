@@ -1,6 +1,7 @@
 import Iconstore from "@/components/icon-store";
 import Typography from "@/components/typography";
 import { cn } from "@/utils/class-merge";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { type FC } from "react";
@@ -40,7 +41,10 @@ const AdminSidebar: FC = () => {
       </div>
 
       <footer className="p-5">
-        <button className="bg-transparent w-full font-semibold flex items-center justify-center gap-2 text-danger">
+        <button
+          className="bg-transparent w-full font-semibold flex items-center justify-center gap-2 text-danger"
+          onClick={() => signOut()}
+        >
           <Iconstore name="logout" className="rotate-180 text-lg" />
           Log out
         </button>

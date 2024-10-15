@@ -6,17 +6,25 @@ import { LoginInputType } from "@/framework/basic-rest/auth/use-login";
 import useAuth from "@/hooks/useAuth";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ImFacebook2, ImGoogle2 } from "react-icons/im";
 
 const LoginForm: React.FC = () => {
   const { login, loading } = useAuth();
+  const { callbackUrl } = useRouter().query;
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<LoginInputType>();
+
+  useEffect(() => {
+    setValue("callbackUrl", (callbackUrl as string) || "/");
+  }, []);
 
   return (
     <div className="overflow-hidden my-16 lg:my-20 bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300 py-5 px-5 sm:px-8">
@@ -106,11 +114,16 @@ const LoginForm: React.FC = () => {
         <ImFacebook2 className="text-sm sm:text-base me-1.5" />
         Login With Facebook
       </Button>
+
       <Button
         // loading={loading}
         disabled={loading}
         className="h-11 md:h-12 w-full mt-2.5 bg-google hover:bg-googleHover"
-        onClick={() => signIn("google")}
+        onClick={() =>
+          signIn("google", {
+            callbackUrl: (callbackUrl as string) || "/",
+          })
+        }
       >
         <ImGoogle2 className="text-sm sm:text-base me-1.5" />
         Login With Google
