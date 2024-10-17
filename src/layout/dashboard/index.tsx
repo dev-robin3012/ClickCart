@@ -4,13 +4,6 @@ import AdminHeader from "./header";
 import AdminSidebar from "./sidebar";
 
 const AdminLayout = ({ children }: PropsWithChildren) => {
-  // const router = useRouter();
-
-  // const { data } = useSession({
-  //   required: true,
-  //   onUnauthenticated: () => router.push("/signin"),
-  // });
-
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <div className="flex items-stretch h-[100dvh] dark:text-white">

@@ -1,17 +1,16 @@
-import Subscription from "@/components/common/subscription";
-import Container from "@/components/ui/container";
 import SignUpForm from "@/containers/auth/sign-up-form";
+import AuthLayout from "@/layout/auth";
+import Layout from "@/layout/global";
+import { NextPageWithLayout } from "./_app";
 
-export default function SignUpPage() {
+const SignUpPage: NextPageWithLayout = () => <SignUpForm />;
+
+SignUpPage.getLayout = function getLayout(page) {
   return (
-    <>
-      {/* <PageHeader pageHeader="Register" /> */}
-      <Container>
-        <div className="py-16 lg:py-20">
-          <SignUpForm />
-        </div>
-        <Subscription />
-      </Container>
-    </>
+    <Layout>
+      <AuthLayout>{page}</AuthLayout>
+    </Layout>
   );
-}
+};
+
+export default SignUpPage;

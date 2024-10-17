@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 
@@ -16,15 +16,22 @@ import "@fontsource/open-sans/700.css";
 import "@fontsource/satisfy";
 
 // base css file
-// import DefaultLayout from "@/layout";
-import Layout from "@/layout";
 import "@/styles/custom-plugins.css";
 import "@/styles/rc-drawer.css";
 import "@/styles/scrollbar.css";
 import "@/styles/swiper-carousel.css";
 import "@/styles/tailwind.css";
+import { NextPage } from "next";
 import "rc-drawer/assets/index.css";
 import "react-toastify/dist/ReactToastify.css";
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
 
 function handleExitComplete() {
   if (typeof window !== "undefined") {
@@ -32,9 +39,10 @@ function handleExitComplete() {
   }
 }
 
-const CustomApp = ({ Component, pageProps }: AppProps) => {
+const CustomApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const [queryClient] = useState(() => new QueryClient());
 
+  const getLayout = Component.getLayout ?? ((page) => page);
   const router = useRouter();
 
   const dir = getDirection(router.locale);
@@ -50,14 +58,11 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
         <Hydrate state={pageProps?.dehydratedState}>
           <SessionProvider>
             <ContextWrapper>
-              <Layout
-                individualLayout={(Component as any).Layout}
-                // pageProps={pageProps}
-              >
-                <DefaultSeo />
-                <Component {...pageProps} key={router.route} />
-                <ToastContainer />
-              </Layout>
+              {/* <Layout individualLayout={(Component as any).Layout}> */}
+              <DefaultSeo />
+              {getLayout(<Component {...pageProps} />)}
+              <ToastContainer />
+              {/* </Layout> */}
             </ContextWrapper>
           </SessionProvider>
         </Hydrate>

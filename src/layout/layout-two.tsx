@@ -1,10 +1,10 @@
-import HeaderTwo from "./header/header-two";
-import Footer from "./footer/footer";
-import MobileNavigation from "./mobile-navigation/mobile-navigation";
-import Search from "@layout/header/search";
-import CookieBar from "@components/common/cookie-bar";
-import { useAcceptCookies } from "@utils/use-accept-cookies";
-import Button from "@components/ui/button";
+import CookieBar from "@/components/common/cookie-bar";
+import Button from "@/components/ui/button";
+import { useAcceptCookies } from "@/utils/use-accept-cookies";
+import Footer from "./global/footer/footer";
+import HeaderTwo from "./global/header/header-two";
+import Search from "./global/header/search";
+import MobileNavigation from "./global/mobile-navigation/mobile-navigation";
 
 export default function LayoutTwo({ children }: React.PropsWithChildren<{}>) {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies();

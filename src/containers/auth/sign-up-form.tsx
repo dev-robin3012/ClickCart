@@ -1,50 +1,60 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import Link from "@/components/ui/link";
-import Logo from "@/components/ui/logo";
 import PasswordInput from "@/components/ui/password-input";
 import { SignUpInputType } from "@/framework/basic-rest/auth/use-signup";
-import useAuth from "@/hooks/useAuth";
 import { ROUTES } from "@/utils/routes";
+import axios from "axios";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ImFacebook2, ImGoogle2 } from "react-icons/im";
+import { toast } from "react-toastify";
 
 const SignUpForm: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const { callbackUrl } = useRouter().query;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpInputType>();
 
-  const { registration, loading } = useAuth();
-
-  function onSubmit(payload: SignUpInputType) {
-    registration(payload);
-  }
+  const onSubmit = async (payload: SignUpInputType) => {
+    try {
+      setLoading(true);
+      const { data } = await axios.post(`/api/auth/signup`, payload);
+      await signIn("credentials", {
+        ...data,
+        callbackUrl: (callbackUrl as string) || "/",
+      });
+    } catch (error: any) {
+      toast.error(error.response.data.message || "Signup failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="py-5 px-5 sm:px-8 bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300">
-      <div className="text-center mb-6 pt-2.5">
-        <div>
-          <Logo />
-        </div>
-        <p className="text-sm md:text-base text-body mt-2 mb-8 sm:mb-10">
-          By signing up, you agree to our
-          <Link
-            href={ROUTES.TERMS}
-            className="text-heading underline hover:no-underline focus:outline-none"
-          >
-            terms
-          </Link>{" "}
-          &amp;{" "}
-          <Link
-            href={ROUTES.POLICY}
-            className="text-heading underline hover:no-underline focus:outline-none"
-          >
-            policy
-          </Link>
-        </p>
-      </div>
+    <>
+      <p className="text-sm md:text-base text-body mt-2 mb-8 sm:mb-10">
+        By signing up, you agree to our
+        <Link
+          href={ROUTES.TERMS}
+          className="text-heading underline hover:no-underline focus:outline-none"
+        >
+          terms
+        </Link>{" "}
+        &amp;{" "}
+        <Link
+          href={ROUTES.POLICY}
+          className="text-heading underline hover:no-underline focus:outline-none"
+        >
+          policy
+        </Link>
+      </p>
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center"
@@ -55,16 +65,16 @@ const SignUpForm: React.FC = () => {
             labelKey="First Name"
             type="text"
             variant="solid"
-            {...register("first_name", {
+            {...register("firstName", {
               required: "forms:first-name-required",
             })}
-            errorKey={errors.first_name?.message}
+            errorKey={errors.firstName?.message}
           />
           <Input
             labelKey="Last Name"
             type="text"
             variant="solid"
-            {...register("last_name")}
+            {...register("lastName")}
           />
           <Input
             labelKey="Email"
@@ -99,41 +109,7 @@ const SignUpForm: React.FC = () => {
           </div>
         </div>
       </form>
-      <div className="flex flex-col items-center justify-center relative text-sm text-heading mt-6 mb-3.5">
-        <hr className="w-full border-gray-300" />
-        <span className="absolute -top-2.5 px-2 bg-white">Or</span>
-      </div>
-
-      <Button
-        type="submit"
-        // loading={loading}
-        disabled={loading}
-        className="h-11 md:h-12 w-full mt-2.5 bg-facebook hover:bg-facebookHover"
-      >
-        <ImFacebook2 className="text-sm sm:text-base me-1.5" />
-        Login With Facebook
-      </Button>
-      <Button
-        type="submit"
-        // loading={isLoading}
-        disabled={loading}
-        className="h-11 md:h-12 w-full mt-2.5 bg-google hover:bg-googleHover"
-      >
-        <ImGoogle2 className="text-sm sm:text-base me-1.5" />
-        Login With Google
-      </Button>
-      <div className="text-sm sm:text-base text-body text-center mt-5 mb-1">
-        Already have an account?{" "}
-        <Link href="signin">
-          <button
-            type="button"
-            className="text-sm sm:text-base text-heading underline font-bold hover:no-underline focus:outline-none"
-          >
-            Login
-          </button>
-        </Link>
-      </div>
-    </div>
+    </>
   );
 };
 

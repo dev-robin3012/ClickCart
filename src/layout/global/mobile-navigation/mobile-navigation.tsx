@@ -6,9 +6,9 @@ import UserIcon from "@/components/icons/user-icon";
 import Link from "@/components/ui/link";
 import useAuth from "@/hooks/useAuth";
 import useModal from "@/hooks/useModal";
-import Search from "@/layout/header/search";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import Search from "../header/search";
 
 const Cart = dynamic(() => import("@/containers/cart"), { ssr: false });
 const AuthMenu = dynamic(() => import("../header/auth-menu"), { ssr: false });

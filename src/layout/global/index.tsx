@@ -11,7 +11,7 @@ import MobileNavigation from "./mobile-navigation/mobile-navigation";
 
 interface Props extends PropsWithChildren {
   // pageProps: any;
-  individualLayout: any;
+  individualLayout?: any;
 }
 
 const Layout: FC<Props> = ({
@@ -19,7 +19,7 @@ const Layout: FC<Props> = ({
   individualLayout: IndividualLayout,
 }) => {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
-  const { status, data } = useSession();
+  const { status } = useSession();
 
   if (status === "loading") {
     return (

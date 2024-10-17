@@ -1,5 +1,5 @@
 import Typography from "@/components/typography";
-import AdminLayout from "@/layout/dashboard-layout";
+import AdminLayout from "@/layout/dashboard";
 
 function ProductsPage() {
   return (

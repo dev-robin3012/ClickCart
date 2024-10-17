@@ -1,7 +1,7 @@
 import Link from "@/components/ui/link";
-import MegaMenu from "@/layout/header/mega-menu";
 import classNames from "classnames";
 import { FaChevronDown } from "react-icons/fa";
+import MegaMenu from "./mega-menu";
 
 interface MenuProps {
   data: any;

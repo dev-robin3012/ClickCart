@@ -1,12 +1,16 @@
-import Subscription from "@/components/common/subscription";
-import Container from "@/components/ui/container";
 import LoginForm from "@/containers/auth/login-form";
+import AuthLayout from "@/layout/auth";
+import Layout from "@/layout/global";
+import type { NextPageWithLayout } from "./_app";
 
-export default function SignInPage() {
+const SignInPage: NextPageWithLayout = () => <LoginForm />;
+
+SignInPage.getLayout = function getLayout(page) {
   return (
-    <Container>
-      <LoginForm />
-      <Subscription />
-    </Container>
+    <Layout>
+      <AuthLayout>{page}</AuthLayout>
+    </Layout>
   );
-}
+};
+
+export default SignInPage;

@@ -1,9 +1,9 @@
-import Header from "./header/header-three";
-import { default as Footer } from "./footer/footer-two";
-import MobileNavigation from "./mobile-navigation/mobile-navigation";
-import CookieBar from "@components/common/cookie-bar";
-import { useAcceptCookies } from "@utils/use-accept-cookies";
-import Button from "@components/ui/button";
+import CookieBar from "@/components/common/cookie-bar";
+import Button from "@/components/ui/button";
+import { useAcceptCookies } from "@/utils/use-accept-cookies";
+import { default as Footer } from "./global/footer/footer-two";
+import Header from "./global/header/header-three";
+import MobileNavigation from "./global/mobile-navigation/mobile-navigation";
 
 export default function LayoutThree({ children }: React.PropsWithChildren<{}>) {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies();

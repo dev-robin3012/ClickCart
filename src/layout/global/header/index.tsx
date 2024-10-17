@@ -1,13 +1,15 @@
 import LanguageSwitcher from "@/components/ui/language-switcher";
 import Logo from "@/components/ui/logo";
 import useAuth from "@/hooks/useAuth";
-import Search from "@/layout/header/search";
+// import Search from "@/layout/header/search";
 import { siteSettings } from "@/settings/site-settings";
 import { useActiveScroll } from "@/utils/add-active-scroll";
+import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React, { FC, useRef } from "react";
 import HeaderMenu from "./header-menu";
+import Search from "./search";
 
 const AuthMenu = dynamic(() => import("./auth-menu"), { ssr: false });
 const Cart = dynamic(() => import("@/containers/cart"), {
@@ -20,6 +22,8 @@ const { site_header } = siteSettings;
 
 const Header: FC = () => {
   const { isLoggedIn } = useAuth();
+  const { status, data } = useSession();
+  console.log(data);
 
   const router = useRouter();
 
@@ -52,8 +56,12 @@ const Header: FC = () => {
                 btnProps={{
                   className:
                     "text-sm xl:text-base text-heading font-semibold focus:outline-none",
-                  children: "Sign In",
-                  onClick: () => router.push("/signin"),
+                  children:
+                    status === "authenticated" ? "Dashboard" : "Sign In",
+                  onClick: () =>
+                    router.push(
+                      status === "authenticated" ? "/dashboard" : "/signin"
+                    ),
                 }}
               >
                 Account
