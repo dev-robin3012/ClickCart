@@ -1,6 +1,7 @@
 import Iconstore from "@/components/icon-store";
 import Typography from "@/components/typography";
 import { cn } from "@/utils/class-merge";
+import Cookies from "js-cookie";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -43,7 +44,9 @@ const AdminSidebar: FC = () => {
       <footer className="p-5">
         <button
           className="bg-transparent w-full font-semibold flex items-center justify-center gap-2 text-danger"
-          onClick={() => signOut()}
+          onClick={async () =>
+            signOut().then(() => Cookies.remove("accessToken"))
+          }
         >
           <Iconstore name="logout" className="rotate-180 text-lg" />
           Log out

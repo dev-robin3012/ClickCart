@@ -1,28 +1,25 @@
-import React, { useRef } from "react";
-import SearchIcon from "@components/icons/search-icon";
-import { siteSettings } from "@settings/site-settings";
-import Logo from "@components/ui/logo";
-import { ROUTES } from "@utils/routes";
-import { useActiveScroll } from "@utils/add-active-scroll";
+import SearchIcon from "@/components/icons/search-icon";
+import { UserLineIcon } from "@/components/icons/UserLineIcon";
+import CategoryMenu from "@/components/ui/category-menu";
+import Link from "@/components/ui/link";
+import Logo from "@/components/ui/logo";
+import WishButton from "@/components/ui/wish-button";
+import { siteSettings } from "@/settings/site-settings";
+import { useActiveScroll } from "@/utils/add-active-scroll";
+import { ROUTES } from "@/utils/routes";
 import dynamic from "next/dynamic";
-import { UserLineIcon } from "@components/icons/UserLineIcon";
-import Link from "@components/ui/link";
-import useAuth from "@hooks/useAuth";
-import HeaderMenu from "./header-menu";
-import CategoryMenu from "@components/ui/category-menu";
-import WishButton from "@components/ui/wish-button";
+import React, { useRef } from "react";
 import { IoFlashOutline } from "react-icons/io5";
+import HeaderMenu from "./header-menu";
 
 const AuthMenu = dynamic(() => import("./auth-menu"), { ssr: false });
 
-const CartButton = dynamic(() => import("@containers/cart"), { ssr: false });
+const CartButton = dynamic(() => import("@/containers/cart"), { ssr: false });
 
 type DivElementRef = React.MutableRefObject<HTMLDivElement>;
 const { site_header } = siteSettings;
 
 export default function Header() {
-  const { isLoggedIn } = useAuth();
-
   const siteHeaderRef = useRef() as DivElementRef;
 
   useActiveScroll(siteHeaderRef);
@@ -121,7 +118,7 @@ export default function Header() {
 
           <div className="flex items-center flex-shrink-0 ms-auto gap-x-7">
             <AuthMenu
-              isAuthorized={isLoggedIn}
+              isAuthorized={false}
               href={ROUTES.ACCOUNT}
               className="flex-shrink-0 hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-3"
               btnProps={{

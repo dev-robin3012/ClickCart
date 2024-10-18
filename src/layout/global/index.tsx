@@ -1,39 +1,14 @@
 import CookieBar from "@/components/common/cookie-bar";
-import Typography from "@/components/typography";
 import Button from "@/components/ui/button";
 import { useAcceptCookies } from "@/utils/use-accept-cookies";
-import { useSession } from "next-auth/react";
 import { NextSeo } from "next-seo";
 import { FC, PropsWithChildren } from "react";
 import Footer from "./footer/footer";
 import Header from "./header";
 import MobileNavigation from "./mobile-navigation/mobile-navigation";
 
-interface Props extends PropsWithChildren {
-  // pageProps: any;
-  individualLayout?: any;
-}
-
-const Layout: FC<Props> = ({
-  children,
-  individualLayout: IndividualLayout,
-}) => {
+const Layout: FC<PropsWithChildren> = ({ children }) => {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
-  const { status } = useSession();
-
-  if (status === "loading") {
-    return (
-      <main className="flex items-center justify-center h-[100dvh] ">
-        <Typography variant="h2">Loading...</Typography>
-      </main>
-    );
-  }
-
-  if (IndividualLayout) {
-    return <IndividualLayout>{children}</IndividualLayout>;
-  }
-
-  // const theme = pageProps.theme;
 
   return (
     <>

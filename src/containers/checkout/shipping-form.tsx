@@ -1,16 +1,11 @@
-import Input from "@components/ui/input";
-import useAuth from "@hooks/useAuth";
-import React, { FC } from "react";
+import Input from "@/components/ui/input";
+import { FC } from "react";
 
 interface Props {
   formState: any;
 }
 
 const ShippingForm: FC<Props> = ({ formState }) => {
-  const {
-    credentials: { shipping },
-  } = useAuth();
-
   return (
     <div>
       <h2 className="text-lg md:text-xl xl:text-2xl font-bold text-heading mb-6 xl:mb-8">
@@ -24,7 +19,7 @@ const ShippingForm: FC<Props> = ({ formState }) => {
             name="first_name"
             variant="solid"
             {...formState("shipping.first_name", {
-              value: shipping?.first_name,
+              value: "Shadu",
             })}
             className="w-full lg:w-1/2 "
           />
@@ -33,7 +28,7 @@ const ShippingForm: FC<Props> = ({ formState }) => {
             name="last_name"
             variant="solid"
             {...formState("shipping.last_name", {
-              value: shipping?.last_name,
+              value: "Robin",
             })}
             className="w-full lg:w-1/2 lg:ms-3 mt-2 md:mt-0"
           />
@@ -43,7 +38,7 @@ const ShippingForm: FC<Props> = ({ formState }) => {
           labelKey="Address"
           name="address_1"
           {...formState("shipping.address_1", {
-            value: shipping?.address_1,
+            value: "Mirpur",
           })}
           variant="solid"
         />
@@ -52,7 +47,7 @@ const ShippingForm: FC<Props> = ({ formState }) => {
           <Input
             labelKey="Phone"
             {...formState("shipping.phone", {
-              value: shipping?.phone,
+              value: "+8801238763",
             })}
             variant="solid"
             className="w-full lg:w-1/2 "
@@ -63,7 +58,7 @@ const ShippingForm: FC<Props> = ({ formState }) => {
           <Input
             labelKey="City"
             {...formState("shipping.city", {
-              value: shipping?.city,
+              value: "Dhaka",
             })}
             variant="solid"
             className="w-full lg:w-1/2 "
@@ -72,7 +67,7 @@ const ShippingForm: FC<Props> = ({ formState }) => {
           <Input
             labelKey="Postcode"
             {...formState("shipping.postcode", {
-              value: shipping?.postcode,
+              value: "1216",
             })}
             variant="solid"
             className="w-full lg:w-1/2 lg:ms-3 mt-2 md:mt-0"

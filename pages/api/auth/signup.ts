@@ -1,5 +1,6 @@
 import { connectDB } from "@/DB/connection";
 import User from "@/DB/models/user";
+import tokenGenerator from "@/utils/token-generator";
 import bcrypt from "bcryptjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -19,15 +20,23 @@ export default async function handler(
         throw new Error("Password missing");
       });
 
+    const { accessToken, refreshToken } = tokenGenerator(req.body.email);
+
     const user = await User.create({
       ...req.body,
       password: hashedPassword,
+      refreshToken,
     });
 
     const response = user.toObject();
     delete response.password;
 
-    res.status(200).json(response);
+    res.setHeader(
+      "Set-Cookie",
+      `accessToken=${accessToken}; HttpOnly; secure; Path=/;`
+    );
+
+    res.status(201).json(response);
   } catch (error: any) {
     if (error.code === 11000) {
       return res

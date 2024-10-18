@@ -58,11 +58,9 @@ const CustomApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <Hydrate state={pageProps?.dehydratedState}>
           <SessionProvider>
             <ContextWrapper>
-              {/* <Layout individualLayout={(Component as any).Layout}> */}
               <DefaultSeo />
               {getLayout(<Component {...pageProps} />)}
               <ToastContainer />
-              {/* </Layout> */}
             </ContextWrapper>
           </SessionProvider>
         </Hydrate>

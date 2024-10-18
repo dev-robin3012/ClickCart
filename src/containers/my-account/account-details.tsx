@@ -1,19 +1,16 @@
-import Input from "@components/ui/input";
-import Button from "@components/ui/button";
-import { useForm } from "react-hook-form";
-import { motion } from "framer-motion";
-import { fadeInTop } from "@utils/motion/fade-in-top";
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
 import {
-  useUpdateUserMutation,
   UpdateUserType,
-} from "@framework/customer/use-update-customer";
-import RadioBox from "@components/ui/radiobox";
-import useAuth from "@hooks/useAuth";
+  useUpdateUserMutation,
+} from "@/framework/basic-rest/customer/use-update-customer";
+import { fadeInTop } from "@/utils/motion/fade-in-top";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
 
 const defaultValues = {};
 
 const AccountDetails: React.FC = () => {
-  const { credentials } = useAuth();
   const { mutate: updateUser, isLoading } = useUpdateUserMutation();
 
   const {
@@ -50,7 +47,6 @@ const AccountDetails: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:space-s-3 space-y-4 sm:space-y-0">
             <Input
               labelKey="First Name"
-              defaultValue={credentials.first_name}
               {...register("firstName", {
                 required: "first name is required",
               })}
@@ -60,7 +56,6 @@ const AccountDetails: React.FC = () => {
             />
             <Input
               labelKey="Last Name"
-              defaultValue={credentials.last_name}
               {...register("lastName", {
                 required: "last name is required",
               })}
@@ -90,7 +85,6 @@ const AccountDetails: React.FC = () => {
             />
             <Input
               type="email"
-              defaultValue={credentials.email}
               labelKey="Email *"
               {...register("email", {
                 required: "Email is required",

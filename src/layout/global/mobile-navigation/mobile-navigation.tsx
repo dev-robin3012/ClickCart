@@ -4,7 +4,6 @@ import HomeIcon from "@/components/icons/home-icon";
 import MenuIcon from "@/components/icons/menu-icon";
 import UserIcon from "@/components/icons/user-icon";
 import Link from "@/components/ui/link";
-import useAuth from "@/hooks/useAuth";
 import useModal from "@/hooks/useModal";
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -16,8 +15,6 @@ const MobileMenu = dynamic(() => import("./mobile-menu"));
 
 const BottomNavigation: React.FC = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
-
-  const { isLoggedIn } = useAuth();
 
   const { openModal } = useModal();
 
@@ -39,7 +36,7 @@ const BottomNavigation: React.FC = () => {
         </Link>
         <Cart />
         <AuthMenu
-          isAuthorized={isLoggedIn}
+          isAuthorized={false}
           href="/my-account"
           className="flex-shrink-0"
           btnProps={{

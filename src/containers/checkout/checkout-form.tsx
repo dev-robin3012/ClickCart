@@ -1,17 +1,16 @@
-import { useForm } from "react-hook-form";
-import Button from "@components/ui/button";
-import useAuth from "src/hooks/useAuth";
-import BillingForm from "./billing-form";
-import ShippingForm from "./shipping-form";
-import TextArea from "@components/ui/text-area";
-import CheckBox from "@components/ui/checkbox";
-import woo_client from "@api/woo-client";
-import { toast } from "react-toastify";
-import useCart from "@hooks/useCart";
+import woo_client from "@/api-config/woo-client";
+import OrderInformation from "@/components/order/order-information";
+import Button from "@/components/ui/button";
+import CheckBox from "@/components/ui/checkbox";
+import Container from "@/components/ui/container";
+import TextArea from "@/components/ui/text-area";
+import useCart from "@/hooks/useCart";
 import { useState } from "react";
-import Container from "@components/ui/container";
-import OrderInformation from "@components/order/order-information";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import BillingForm from "./billing-form";
 import CheckoutCard from "./checkout-card";
+import ShippingForm from "./shipping-form";
 
 interface CheckoutInputType {
   billing: {
@@ -40,8 +39,6 @@ const CheckoutForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState(null);
 
-  const { credentials } = useAuth();
-
   const { register, handleSubmit } = useForm<CheckoutInputType>();
 
   const { cartItems, clearCart } = useCart();
@@ -49,7 +46,7 @@ const CheckoutForm: React.FC = () => {
   const handlePlaceOrder = async ({ save, note, ...rest }: any) => {
     setLoading(true);
     try {
-      save && (await woo_client.put(`customers/${credentials.id}`, rest));
+      save && (await woo_client.put(`customers/${""}`, rest));
 
       const items = cartItems.map((item: any) => ({
         product_id: item.parentID,

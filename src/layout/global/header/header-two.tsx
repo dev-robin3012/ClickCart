@@ -1,24 +1,18 @@
-import { useRef } from "react";
-import Logo from "@components/ui/logo";
-import { ROUTES } from "@utils/routes";
-import { useActiveScroll } from "@utils/add-active-scroll";
+import Logo from "@/components/ui/logo";
+import { useActiveScroll } from "@/utils/add-active-scroll";
+import { ROUTES } from "@/utils/routes";
 import dynamic from "next/dynamic";
-import { useState } from "react";
-import { Drawer } from "@components/common/drawer";
-import motionProps from "@components/common/drawer/motion";
-import MobileMenu from "@layout/mobile-navigation/mobile-menu";
-import Search from "./search";
-import useAuth from "@hooks/useAuth";
 import { useRouter } from "next/router";
+import { useRef } from "react";
 import DrawerMenu from "./Drawer";
+import Search from "./search";
 
 const AuthMenu = dynamic(() => import("./auth-menu"), { ssr: false });
-const CartButton = dynamic(() => import("@containers/cart"), { ssr: false });
+const CartButton = dynamic(() => import("@/containers/cart"), { ssr: false });
 
 type DivElementRef = React.MutableRefObject<HTMLDivElement>;
 
 const HeaderTwo: React.FC = () => {
-  const { isLoggedIn } = useAuth();
   const router = useRouter();
 
   const siteHeaderRef = useRef() as DivElementRef;
@@ -41,7 +35,7 @@ const HeaderTwo: React.FC = () => {
             <Search />
             <div className="-mt-0.5 flex-shrink-0">
               <AuthMenu
-                isAuthorized={isLoggedIn}
+                isAuthorized={false}
                 href={ROUTES.ACCOUNT}
                 className="text-sm xl:text-base text-heading font-semibold"
                 btnProps={{

@@ -8,8 +8,7 @@ export interface UserDocument {
   password: string;
   phone: string;
   image: string;
-  createdAt: Date;
-  updatedAt: Date;
+  refreshToken: string;
 }
 
 const UserSchema = new Schema<UserDocument>(
@@ -25,15 +24,14 @@ const UserSchema = new Schema<UserDocument>(
         "Email is invalid",
       ],
     },
-    password: {
-      type: String,
-      required: [true, "Password is required"],
-    },
+    password: String,
     phone: String,
     image: String,
+    refreshToken: String,
   },
   { timestamps: true }
 );
 
 const User = mongoose.models?.User || model<UserDocument>("User", UserSchema);
+
 export default User;

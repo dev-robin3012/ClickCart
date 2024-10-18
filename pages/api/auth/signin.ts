@@ -1,5 +1,6 @@
 import { connectDB } from "@/DB/connection";
 import User from "@/DB/models/user";
+import tokenGenerator from "@/utils/token-generator";
 import bcrypt from "bcryptjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -26,8 +27,19 @@ export default async function handler(
     if (!passwordMatch)
       return res.status(401).json({ message: "Wrong Password" });
 
+    const { accessToken, refreshToken } = tokenGenerator(user.email);
+
+    await User.findByIdAndUpdate(user._id, { refreshToken });
+
     const response = user.toObject();
     delete response.password;
+    delete response.refreshToken;
+    response.accessToken = accessToken;
+
+    // res.setHeader(
+    //   "Set-Cookie",
+    //   `accessToken=${accessToken}; secure; Path=/; Max-Age=${60 * 60 * 24 * 7};`
+    // );
 
     res.status(200).json(response);
   } catch (error: any) {

@@ -1,14 +1,14 @@
+import { ROUTES } from "@/utils/routes";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import {
-  IoHomeOutline,
   IoCartOutline,
+  IoHomeOutline,
+  IoLogOutOutline,
   IoPersonOutline,
   IoSettingsOutline,
-  IoLogOutOutline,
 } from "react-icons/io5";
-import { ROUTES } from "@utils/routes";
-import useAuth from "src/hooks/useAuth";
 
 const accountMenu = [
   {
@@ -35,7 +35,6 @@ const accountMenu = [
 
 export default function AccountNav() {
   //   const { mutate: logout } = useLogoutMutation();
-  const { logout } = useAuth();
   const { pathname } = useRouter();
   const newPathname = pathname.split("/").slice(2, 3);
   const mainPath = `/${newPathname[0]}`;
@@ -63,7 +62,7 @@ export default function AccountNav() {
       })}
       <button
         className="flex items-center cursor-pointer text-sm lg:text-base text-heading font-normal py-3.5 px-4 lg:px-5 focus:outline-none"
-        onClick={() => logout()}
+        onClick={() => signOut()}
       >
         <IoLogOutOutline className="w-5 h-5" />
         <span className="ps-2">Logout</span>

@@ -1,7 +1,5 @@
 import LanguageSwitcher from "@/components/ui/language-switcher";
 import Logo from "@/components/ui/logo";
-import useAuth from "@/hooks/useAuth";
-// import Search from "@/layout/header/search";
 import { siteSettings } from "@/settings/site-settings";
 import { useActiveScroll } from "@/utils/add-active-scroll";
 import { useSession } from "next-auth/react";
@@ -21,12 +19,8 @@ type DivElementRef = React.MutableRefObject<HTMLDivElement>;
 const { site_header } = siteSettings;
 
 const Header: FC = () => {
-  const { isLoggedIn } = useAuth();
-  const { status, data } = useSession();
-  console.log(data);
-
+  const { status } = useSession();
   const router = useRouter();
-
   const siteHeaderRef = useRef() as DivElementRef;
 
   useActiveScroll(siteHeaderRef);
@@ -50,7 +44,7 @@ const Header: FC = () => {
             <Search />
             <div className="flex-shrink-0">
               <AuthMenu
-                isAuthorized={isLoggedIn}
+                isAuthorized={status === "authenticated"}
                 href="/my-account"
                 className="text-sm xl:text-base text-heading font-semibold"
                 btnProps={{
