@@ -1,12 +1,12 @@
-import PasswordInput from "@components/ui/password-input";
-import Button from "@components/ui/button";
-import { useForm } from "react-hook-form";
-import { motion } from "framer-motion";
-import { fadeInTop } from "@utils/motion/fade-in-top";
+import Button from "@/components/ui/button";
+import PasswordInput from "@/components/ui/password-input";
 import {
-  useChangePasswordMutation,
   ChangePasswordInputType,
-} from "@framework/customer/use-change-password";
+  useChangePasswordMutation,
+} from "@/framework/basic-rest/customer/use-change-password";
+import { fadeInTop } from "@/utils/motion/fade-in-top";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
 
 const defaultValues = {
   oldPassword: "",

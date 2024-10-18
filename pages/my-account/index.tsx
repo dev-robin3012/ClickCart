@@ -1,7 +1,7 @@
-import Link from "@components/ui/link";
-import Layout from "@layout/layout-one";
-import AccountLayout from "@containers/my-account/account-layout";
-import { ROUTES } from "@utils/routes";
+import Link from "@/components/ui/link";
+import AccountLayout from "@/containers/my-account/account-layout";
+import Layout from "@/layout/layout-one";
+import { ROUTES } from "@/utils/routes";
 export default function AccountPage() {
   return (
     <AccountLayout>

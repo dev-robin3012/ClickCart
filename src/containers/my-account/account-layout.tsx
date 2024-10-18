@@ -1,7 +1,7 @@
-import PageHeader from "@components/ui/page-header";
-import Container from "@components/ui/container";
-import AccountNav from "@containers/my-account/account-nav";
-import Subscription from "@components/common/subscription";
+import Subscription from "@/components/common/subscription";
+import Container from "@/components/ui/container";
+import PageHeader from "@/components/ui/page-header";
+import AccountNav from "@/containers/my-account/account-nav";
 
 const AccountLayout = (props: any) => {
   return (

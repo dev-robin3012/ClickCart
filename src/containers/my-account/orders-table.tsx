@@ -1,8 +1,8 @@
+import Link from "@/components/ui/link";
+import { fadeInTop } from "@/utils/motion/fade-in-top";
+import { useSsrCompatible } from "@/utils/use-ssr-compatible";
+import { useWindowSize } from "@/utils/use-window-size";
 import { motion } from "framer-motion";
-import { fadeInTop } from "@utils/motion/fade-in-top";
-import Link from "@components/ui/link";
-import { useWindowSize } from "@utils/use-window-size";
-import { useSsrCompatible } from "@utils/use-ssr-compatible";
 
 const OrdersTable: React.FC = () => {
   const { width } = useSsrCompatible(useWindowSize(), { width: 0, height: 0 });

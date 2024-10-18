@@ -1,4 +1,4 @@
-import LanguageSwitcher from "@/components/ui/language-switcher";
+import AuthMenu from "@/components/auth-menu";
 import Logo from "@/components/ui/logo";
 import { siteSettings } from "@/settings/site-settings";
 import { useActiveScroll } from "@/utils/add-active-scroll";
@@ -7,9 +7,8 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React, { FC, useRef } from "react";
 import HeaderMenu from "./header-menu";
-import Search from "./search";
 
-const AuthMenu = dynamic(() => import("./auth-menu"), { ssr: false });
+// const AuthMenu = dynamic(() => import("./auth-menu"), { ssr: false });
 const Cart = dynamic(() => import("@/containers/cart"), {
   ssr: false,
 });
@@ -32,17 +31,24 @@ const Header: FC = () => {
       className="w-full h-16 sm:h-20 lg:h-24 relative z-20"
     >
       <div className="innerSticky text-gray-700 body-font fixed bg-white w-full h-16 sm:h-20 lg:h-24 px-4 md:px-8 transition duration-200 ease-in-out">
-        <div className="flex gap-5 items-center justify-center lg:justify-between mx-auto max-w-[1920px] h-full w-full">
-          <Logo />
-          <HeaderMenu data={site_header.menu} className="hidden lg:flex" />
-
-          <div className="flex-shrink-0 ms-auto lg:me-5 xl:me-8 2xl:me-10">
-            <LanguageSwitcher />
+        <div className="flex gap-5 items-center justify-between lg:justify-between mx-auto max-w-[1920px] h-full w-full">
+          <div className="flex items-center gap-5">
+            <Logo />
+            <HeaderMenu data={site_header.menu} className="hidden lg:flex" />
           </div>
 
-          <div className="hidden lg:flex justify-end items-center gap-2 md:gap-5">
-            <Search />
-            <div className="flex-shrink-0">
+          <div className="flex items-stretch gap-5">
+            {/* <LanguageSwitcher /> */}
+            <AuthMenu />
+            <Cart />
+          </div>
+
+          {/* <div className="flex-shrink-0 ms-auto lg:me-5 xl:me-8 2xl:me-10">
+          </div> */}
+
+          {/* <div className="hidden lg:flex justify-end items-center gap-2 md:gap-5 border"> */}
+          {/* <Search /> */}
+          {/* <div className="flex-shrink-0">
               <AuthMenu
                 isAuthorized={status === "authenticated"}
                 href="/my-account"
@@ -52,6 +58,7 @@ const Header: FC = () => {
                     "text-sm xl:text-base text-heading font-semibold focus:outline-none",
                   children:
                     status === "authenticated" ? "Dashboard" : "Sign In",
+
                   onClick: () =>
                     router.push(
                       status === "authenticated" ? "/dashboard" : "/signin"
@@ -60,9 +67,8 @@ const Header: FC = () => {
               >
                 Account
               </AuthMenu>
-            </div>
-            <Cart />
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
       </div>
     </header>
