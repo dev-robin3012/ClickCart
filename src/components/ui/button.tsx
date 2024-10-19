@@ -1,56 +1,65 @@
-import cn from "classnames";
-import { ButtonHTMLAttributes, forwardRef } from "react";
+import { cn } from "@/utils/class-merge";
+import { type ButtonHTMLAttributes, forwardRef } from "react";
 import Iconstore from "../icon-store";
+import type IconProps from "../icon-store/interface";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  variant?: "flat" | "slim" | "smoke";
-  active?: boolean;
-  type?: "submit" | "reset" | "button";
+  variant?: "solid" | "outlined" | "smoke";
   loading?: boolean;
-  disabled?: boolean;
-  disableBorderRadius?: boolean;
+  radius?: boolean;
+  icon?: Omit<IconProps, "onClick">;
+  size?: "sm" | "default" | "lg";
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     className,
-    variant = "flat",
-    children,
-    active,
+    variant = "solid",
     loading = false,
-    disabled = false,
-    disableBorderRadius = false,
+    radius = true,
+    children,
+    icon,
+    size = "default",
     ...rest
   } = props;
 
   const rootClassName = cn(
-    "text-[13px] md:text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-body text-center justify-center border-0 border-transparent placeholder-white focus-visible:outline-none focus:outline-none",
+    "text-[13px] md:text-sm xl:text-base inline-flex gap-3 items-center justify-center cursor-pointer transition ease-in-out duration-300 font-semibold border border-transparent outline-none disabled:cursor-not-allowed disabled:bg-gray-default disabled:text-gray-light disabled:border-gray-default",
+
     {
-      "rounded-md ": !disableBorderRadius,
-      "bg-heading text-white px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-gray-600 hover:shadow-cart":
-        variant === "flat",
-      "h-11 md:h-12 px-5 bg-heading text-white py-2 transform-none normal-case hover:text-white hover:bg-gray-600 hover:shadow-cart":
-        variant === "slim",
-      "h-11 md:h-12 px-5 bg-gray-200 text-heading py-2 transform-none normal-case hover:bg-gray-300":
+      "px-3 md:px-4 lg:px-5 py-1 md:py-1.5": size === "sm",
+      "px-5 md:px-6 lg:px-7 py-2.5 md:py-3": size === "default",
+      "px-5 md:px-6 lg:px-7 py-3 md:py-4": size === "lg",
+    },
+    {
+      "bg-primary hover:bg-primary/80 text-white ": variant === "solid",
+      "bg-transparent text-primary border-primary": variant === "outlined",
+      "bg-gray-light text-primary hover:bg-gray-light/50 border-gray-light":
         variant === "smoke",
+    },
+    {
+      "rounded-md ": !!radius,
       "cursor-not-allowed": loading,
-      "cursor-not-allowed hover:cursor-not-allowed": disabled,
     },
     className
   );
 
   return (
     <button
-      aria-pressed={active}
       data-variant={variant}
       ref={ref}
       className={rootClassName}
-      disabled={disabled}
+      disabled={loading || rest.disabled}
       {...rest}
     >
       {children}
-      {loading && <Iconstore name="loader" />}
+
+      {(!!loading || !!icon) && (
+        <Iconstore
+          name={loading ? "loader" : (icon?.name as IconProps["name"])}
+          className={cn(loading && "animate-spin", "text-lg", icon?.className)}
+        />
+      )}
     </button>
   );
 });

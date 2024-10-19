@@ -50,7 +50,7 @@ const MobileMenu: FC = () => {
 
       <motion.div
         ref={muskRef}
-        className="fixed inset-0 backdrop-blur-sm z-50"
+        className="fixed inset-0 backdrop-blur-md z-50"
         initial={{ display: "none" }}
         animate={openMenu ? show : hide}
       >

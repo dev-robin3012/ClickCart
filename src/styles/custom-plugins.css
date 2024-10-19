@@ -15,10 +15,13 @@
 .accordion.rc-collapse > .rc-collapse-item > .rc-collapse-header:hover h3 {
   @apply text-black;
 }
-.accordion.rc-collapse > .rc-collapse-item > .rc-collapse-content {
+/* .accordion.rc-collapse > .rc-collapse-item > .rc-collapse-content {
   @apply bg-transparent py-0 ps-0 pe-32 text-body;
-}
-.accordion.rc-collapse > .rc-collapse-item > .rc-collapse-content > .rc-collapse-content-box {
+} */
+.accordion.rc-collapse
+  > .rc-collapse-item
+  > .rc-collapse-content
+  > .rc-collapse-content-box {
   @apply my-0 text-sm leading-6 pb-5;
 }
 
@@ -26,9 +29,9 @@
   @apply font-semibold  rounded-md bg-gray-100 !important;
 }
 
-.react-stars {
+/* .react-stars {
   @apply space-s-0.5;
-}
+} */
 
 /* Toastify */
 .Toastify .fancy-progress-bar {
@@ -76,7 +79,7 @@
   @apply fixed;
   @apply opacity-0;
   @apply top-0;
-  @apply start-0;
+  /* @apply start-0; */
   transition: 0.35s ease-in-out;
 }
 .overlay.open {
@@ -101,7 +104,7 @@
   @apply fixed;
   @apply opacity-0;
   @apply top-0;
-  @apply start-0;
+  /* @apply start-0; */
   transition: 0.35s ease-in-out;
 }
 .overlay.open {

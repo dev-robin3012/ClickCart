@@ -9,6 +9,7 @@ export interface UserDocument {
   phone: string;
   image: string;
   refreshToken: string;
+  role: "admin" | "customer";
 }
 
 const UserSchema = new Schema<UserDocument>(
@@ -28,6 +29,7 @@ const UserSchema = new Schema<UserDocument>(
     phone: String,
     image: String,
     refreshToken: String,
+    role: { type: String, enum: ["admin", "customer"], default: "customer" },
   },
   { timestamps: true }
 );

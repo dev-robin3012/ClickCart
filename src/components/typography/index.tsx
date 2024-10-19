@@ -12,7 +12,7 @@ const Typography: FC<ITypography> = ({
   return (
     <Wrapper
       className={cn(
-        "text-base",
+        "text-base leading-[120%]",
         {
           "text-6xl font-semibold": variant === "h1",
           "text-3xl font-semibold": variant === "h2",

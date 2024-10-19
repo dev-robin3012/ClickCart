@@ -1,14 +1,10 @@
-import Typography from "@/components/typography";
+import DashboardProductsListing from "@/containers/admin-dashboard/products";
 import AdminLayout from "@/layout/dashboard";
-import { NextPageWithLayout } from "../../_app";
+import type { NextPageWithLayout } from "../../_app";
 
-const DashboardProductsPage: NextPageWithLayout = () => {
-  return (
-    <section>
-      <Typography variant="h2">This is Products page</Typography>
-    </section>
-  );
-};
+const DashboardProductsPage: NextPageWithLayout = () => (
+  <DashboardProductsListing />
+);
 DashboardProductsPage.getLayout = function (page) {
   return <AdminLayout>{page}</AdminLayout>;
 };

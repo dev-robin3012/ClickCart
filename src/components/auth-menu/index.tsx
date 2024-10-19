@@ -33,7 +33,9 @@ const AuthMenu: FC = () => {
     );
   }
 
-  const { image, firstName } = data.user;
+  const { image, firstName, role } = data.user;
+
+  console.log(role === "admin");
 
   return (
     <div className="relative" ref={ref}>
@@ -76,11 +78,13 @@ const AuthMenu: FC = () => {
           </Link>
         </li>
 
-        <li className="hover:bg-gray-light rounded-md">
-          <Link href="/dashboard" className="px-3 py-1.5 block">
-            Dashboard
-          </Link>
-        </li>
+        {role === "admin" && (
+          <li className="hover:bg-gray-light rounded-md">
+            <Link href="/dashboard" className="px-3 py-1.5 block">
+              Dashboard
+            </Link>
+          </li>
+        )}
 
         <li
           className="hover:bg-gray-light rounded-md py-1.5 px-3 cursor-pointer"

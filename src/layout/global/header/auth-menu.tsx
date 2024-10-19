@@ -1,5 +1,4 @@
 import Link from "@/components/ui/link";
-import { useSession } from "next-auth/react";
 
 interface Props {
   href: string;
@@ -15,9 +14,6 @@ export default function AuthMenu({
   btnProps,
   children,
 }: React.PropsWithChildren<Props>) {
-  const { data } = useSession();
-  console.log(data);
-
   return isAuthorized ? (
     <Link href={href} className={className}>
       {children}

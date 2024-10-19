@@ -14,6 +14,12 @@ export default async function handler(
 ) {
   try {
     await connectDB();
+
+    if (req.body.password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters long" });
+    }
     const hashedPassword = await bcrypt
       .hash(req.body.password, 10)
       .catch(() => {
@@ -21,11 +27,13 @@ export default async function handler(
       });
 
     const { accessToken, refreshToken } = tokenGenerator(req.body.email);
+    const isAdmin = req.body.email === process.env.ADMIN_Email;
 
     const user = await User.create({
       ...req.body,
       password: hashedPassword,
       refreshToken,
+      role: isAdmin ? "admin" : "customer",
     });
 
     const response = user.toObject();

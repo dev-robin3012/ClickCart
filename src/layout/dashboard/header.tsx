@@ -20,7 +20,9 @@ const AdminHeader: FC = () => {
       <div className="flex items-center gap-5">
         <MobileMenu />
         <Typography variant="h2" className="capitalize">
-          {pagePath === "dashboard" ? "Overview" : pagePath}
+          {pagePath === "dashboard"
+            ? "Overview"
+            : pagePath?.replaceAll("-", " ")}
         </Typography>
       </div>
 

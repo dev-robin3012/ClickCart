@@ -1,9 +1,9 @@
-import Input from "@components/ui/input";
-import Button from "@components/ui/button";
+import Button from "@/components/ui/button";
+import CheckBox from "@/components/ui/checkbox";
+import Input from "@/components/ui/input";
+import TextArea from "@/components/ui/text-area";
 import { useForm } from "react-hook-form";
-import TextArea from "@components/ui/text-area";
 import ReactStars from "react-rating-stars-component";
-import CheckBox from "@components/ui/checkbox";
 
 interface ReviewFormValues {
   name: string;

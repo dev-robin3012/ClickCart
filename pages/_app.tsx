@@ -2,6 +2,7 @@ import { DefaultSeo } from "@/components/common/default-seo";
 import ContextWrapper from "@/contexts";
 import { getDirection } from "@/utils/get-direction";
 import { AnimatePresence } from "framer-motion";
+import type { NextPage } from "next";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
@@ -9,19 +10,12 @@ import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 
-// base fonts
-import "@fontsource/open-sans";
-import "@fontsource/open-sans/600.css";
-import "@fontsource/open-sans/700.css";
-import "@fontsource/satisfy";
-
 // base css file
 import "@/styles/custom-plugins.css";
 import "@/styles/rc-drawer.css";
 import "@/styles/scrollbar.css";
 import "@/styles/swiper-carousel.css";
 import "@/styles/tailwind.css";
-import { NextPage } from "next";
 import "rc-drawer/assets/index.css";
 import "react-toastify/dist/ReactToastify.css";
 

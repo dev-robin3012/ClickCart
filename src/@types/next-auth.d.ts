@@ -15,6 +15,7 @@ declare module "next-auth" {
       image: string;
       sub?: string;
       jti?: string;
+      role: "admin" | "customer";
     };
     accessToken: string;
   }

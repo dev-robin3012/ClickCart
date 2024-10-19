@@ -17,7 +17,6 @@ export const authOptions: NextAuthOptions = {
         firstName: { label: "Name", type: "text" },
         lastName: { label: "Name", type: "text" },
         email: { label: "Email", type: "email" },
-        test: { label: "Test", type: "email" },
       },
       authorize: async (credentials) => {
         return {
@@ -35,8 +34,6 @@ export const authOptions: NextAuthOptions = {
   pages: { signIn: "/signin" },
   callbacks: {
     signIn: async ({ account, profile, credentials }) => {
-      console.log({ account });
-
       try {
         if (account?.provider === "google") {
           await connectDB();
@@ -50,8 +47,14 @@ export const authOptions: NextAuthOptions = {
               image: profile?.picture,
             });
           }
+
+          const isAdmin = userInDB.email === process.env.ADMIN_Email;
           const { accessToken, refreshToken } = tokenGenerator(userInDB.email);
-          await User.findByIdAndUpdate(userInDB._id, { refreshToken });
+
+          await User.findByIdAndUpdate(userInDB._id, {
+            refreshToken,
+            role: isAdmin ? "admin" : "customer",
+          });
 
           const response = userInDB.toObject();
 
@@ -61,6 +64,7 @@ export const authOptions: NextAuthOptions = {
           account.lastName = response.lastName;
           account.email = response.email;
           account.image = response.image || "";
+          account.role = isAdmin ? "admin" : "customer";
         } else if (account?.provider === "credentials" && !!credentials) {
           account.accessToken = credentials.accessToken;
           account.id = credentials._id + "";
@@ -68,6 +72,7 @@ export const authOptions: NextAuthOptions = {
           account.lastName = credentials.lastName;
           account.email = credentials.email;
           account.image = credentials.image || "";
+          account.role = credentials.role || "customer";
         }
 
         return true;
@@ -82,6 +87,7 @@ export const authOptions: NextAuthOptions = {
         token.firstName = account.firstName || "";
         token.lastName = account.lastName || "";
         token.image = account.image || "";
+        token.role = account.role || "customer";
       }
       return token;
     },

@@ -1,8 +1,8 @@
 import { Drawer } from "@/components/common/drawer";
 import motionProps from "@/components/common/drawer/motion";
+import Iconstore from "@/components/icon-store";
 import HomeIcon from "@/components/icons/home-icon";
 import MenuIcon from "@/components/icons/menu-icon";
-import UserIcon from "@/components/icons/user-icon";
 import Link from "@/components/ui/link";
 import useModal from "@/hooks/useModal";
 import dynamic from "next/dynamic";
@@ -41,11 +41,11 @@ const BottomNavigation: React.FC = () => {
           className="flex-shrink-0"
           btnProps={{
             className: "flex-shrink-0 focus:outline-none",
-            children: <UserIcon />,
+            children: <Iconstore name="user" />,
             onClick: () => openModal("LOGIN_VIEW"),
           }}
         >
-          <UserIcon />
+          <Iconstore name="user" />
         </AuthMenu>
       </div>
 

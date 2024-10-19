@@ -1,26 +1,21 @@
-import { Fragment, useState } from "react";
+import UserIcon from "@/components/icon-store/user-icon";
+import HomeIcon from "@/components/icons/home-icon";
+import Logo from "@/components/ui/logo";
 import { Dialog, Transition } from "@headlessui/react";
-import {
-  CalendarIcon,
-  ChartPieIcon,
-  Cog6ToothIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-} from "@heroicons/react/24/outline";
-import { HiMenuAlt1 } from "react-icons/hi";
-import Logo from "@components/ui/logo";
+import { Fragment, useState } from "react";
+import { BsCalendar, BsFolder } from "react-icons/bs";
+import { FaTooth } from "react-icons/fa";
+import { HiChartPie, HiDocumentDuplicate, HiMenuAlt1 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
 import { useWindowSize } from "react-use";
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
+  { name: "Team", href: "#", icon: UserIcon, current: false },
+  { name: "Projects", href: "#", icon: BsFolder, current: false },
+  { name: "Calendar", href: "#", icon: BsCalendar, current: false },
+  { name: "Documents", href: "#", icon: HiDocumentDuplicate, current: false },
+  { name: "Reports", href: "#", icon: HiChartPie, current: false },
 ];
 const teams = [
   { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
@@ -151,7 +146,7 @@ export default function MobileMenu() {
                           href="#"
                           className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
                         >
-                          <Cog6ToothIcon
+                          <FaTooth
                             className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
                             aria-hidden="true"
                           />

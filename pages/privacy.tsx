@@ -1,8 +1,8 @@
-import Layout from "@layout/layout-one";
-import Container from "@components/ui/container";
-import PageHeader from "@components/ui/page-header";
-import { privacyPolicy } from "@settings/privacy-settings";
-import { Link, Element } from "react-scroll";
+import Container from "@/components/ui/container";
+import PageHeader from "@/components/ui/page-header";
+import Layout from "@/layout/layout-one";
+import { privacyPolicy } from "@/settings/privacy-settings";
+import { Element, Link } from "react-scroll";
 
 function makeTitleToDOMId(title: string) {
   return title.toLowerCase().split(" ").join("_");
