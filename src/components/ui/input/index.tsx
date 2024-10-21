@@ -2,11 +2,12 @@ import { cn } from "@/utils/class-merge";
 import { forwardRef, type InputHTMLAttributes } from "react";
 import FileUploadField from "./file-upload";
 
-interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+export interface InputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   size?: "sm" | "md" | "lg";
 }
 
-const Input = forwardRef<HTMLInputElement, Props>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, size = "md", ...rest }, ref) => (
     <input
       ref={ref}

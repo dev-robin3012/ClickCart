@@ -1,72 +1,112 @@
 import Iconstore from "@/components/icon-store";
 import { cn } from "@/utils/class-merge";
-import { type ClassValue } from "clsx";
+import type { ClassValue } from "clsx";
 import { motion } from "framer-motion";
-import { useState, type FC, type ReactNode } from "react";
+import {
+  useState,
+  type FC,
+  type PropsWithChildren,
+  type ReactNode,
+} from "react";
 import Text from "../text";
 
-interface Props {
-  items: {
-    key: string;
-    label: string;
-    children: ReactNode;
-  }[];
-  defaultExpand?: string;
+interface AccordionProps extends PropsWithChildren {
   bordereless?: boolean;
-  classNames?: {
-    header: ClassValue;
-  };
+  className?: ClassValue;
 }
 
-const Accordion: FC<Props> = ({
-  items,
+const Accordion: FC<AccordionProps> = ({
   bordereless,
-  classNames,
-  defaultExpand = "",
+  children,
+  className,
 }) => {
-  const [expanded, setExpanded] = useState(defaultExpand);
-
   return (
     <div
       className={cn(
         "rounded-md overflow-hidden border divide-y-[1px]",
-        bordereless && "border-none"
+        bordereless && "border-none",
+        className
       )}
     >
-      {items.map((item) => (
-        <div key={item.key}>
-          <div
-            className={cn(
-              "py-2.5 px-3 flex items-center justify-between cursor-pointer",
-              item.key === expanded && "border-b",
-              classNames?.header
-            )}
-            onClick={() => setExpanded(item.key === expanded ? "" : item.key)}
-          >
-            <Text className="font-semibold">Clategory Name 1</Text>
-            <Iconstore
-              name="arrow-down"
-              className={cn(
-                "text-xl transition-all",
-                item.key === expanded && "rotate-180"
-              )}
-            />
-          </div>
-
-          <motion.div
-            initial={{ display: "none", height: 0, overflow: "hidden" }}
-            animate={
-              item.key === expanded
-                ? { height: "auto", display: "block" }
-                : { height: 0, transitionEnd: { display: "none" } }
-            }
-          >
-            <div className={cn("p-5 cursor-auto")}>{item.children}</div>
-          </motion.div>
-        </div>
-      ))}
+      {children}
     </div>
   );
 };
 
-export default Accordion;
+interface AccordionItemProps extends Omit<AccordionProps, "className"> {
+  title: string;
+  classNames?: {
+    header?: ClassValue;
+    body?: ClassValue;
+  };
+  expandIconPlacement?: "right" | "left";
+  extraHeaderItems?: ReactNode;
+}
+
+const AccordionItem: FC<AccordionItemProps> = ({
+  title,
+  children,
+  classNames,
+  expandIconPlacement = "right",
+  bordereless,
+  extraHeaderItems,
+}) => {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div>
+      <div
+        className={cn(
+          "px-3 flex items-center justify-between gap-3 cursor-pointer",
+          bordereless && "bg-gray-light border-b border-white",
+          expanded && "border-b",
+          classNames?.header
+        )}
+      >
+        <div
+          className="py-2.5 flex items-center gap-3 flex-1"
+          onClick={() => setExpanded(!expanded)}
+        >
+          {expandIconPlacement === "left" && (
+            <Iconstore
+              name="arrow-down"
+              className={cn(
+                "text-xl transition-all -rotate-90",
+                expanded && "rotate-0"
+              )}
+            />
+          )}
+
+          <Text className="font-semibold">{title}</Text>
+
+          {expandIconPlacement === "right" && (
+            <Iconstore
+              name="arrow-down"
+              className={cn(
+                "text-xl transition-all ml-auto",
+                expanded && "rotate-180"
+              )}
+            />
+          )}
+        </div>
+
+        {extraHeaderItems}
+      </div>
+
+      <motion.div
+        initial={{ display: "none", height: 0, overflow: "hidden" }}
+        animate={
+          expanded
+            ? { height: "auto", display: "block" }
+            : { height: 0, transitionEnd: { display: "none" } }
+        }
+      >
+        <div className={cn("p-5 cursor-auto", classNames?.body)}>
+          {children}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export { Accordion, AccordionItem };

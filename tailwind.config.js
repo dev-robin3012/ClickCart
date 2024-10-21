@@ -20,7 +20,6 @@ module.exports = {
         gray: {
           light: "#e5e7eb",
           default: "#999999",
-          // hard: "#343D48",
           hard: "#37373f",
         },
         danger: "#FF1100",
