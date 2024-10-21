@@ -38,7 +38,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         variant === "smoke",
     },
     {
-      "rounded-md ": !!radius,
+      "rounded-md": !!radius,
       "cursor-not-allowed": loading,
     },
     className

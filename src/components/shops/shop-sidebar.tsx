@@ -1,17 +1,17 @@
-import { useState } from "react";
-import Image from "next/image";
-import Text from "@components/ui/text";
 import Button from "@components/ui/button";
-import { RiShareBoxLine } from "react-icons/ri";
+import { Text } from "@components/ui/text";
 import { ROUTES } from "@utils/routes";
+import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { RiShareBoxLine } from "react-icons/ri";
 import {
-  FacebookShareButton,
-  LinkedinShareButton,
-  TwitterShareButton,
   FacebookIcon,
+  FacebookShareButton,
   LinkedinIcon,
+  LinkedinShareButton,
   TwitterIcon,
+  TwitterShareButton,
 } from "react-share";
 
 interface ShopSidebarProps {

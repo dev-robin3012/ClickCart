@@ -11,7 +11,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
 
         <div className="flex-1 flex flex-col">
           <AdminHeader />
-          <main className="flex-1 p-5 border-t dark:border-gray-hard">
+          <main className="flex-1 p-5 border-t overflow-hidden bg-[#f0f0f0] dark:border-gray-hard">
             {children}
           </main>
         </div>

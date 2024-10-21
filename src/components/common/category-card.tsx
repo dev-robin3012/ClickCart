@@ -1,4 +1,4 @@
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui/text";
 import { Category } from "@/framework/basic-rest/types";
 import Image from "next/image";
 import Link from "next/link";

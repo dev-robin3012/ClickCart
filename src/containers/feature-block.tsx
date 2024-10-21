@@ -1,3 +1,5 @@
+// import {Text}Information from "@/components/common/text-information";
+
 import TextInformation from "@/components/common/text-information";
 
 const data = [

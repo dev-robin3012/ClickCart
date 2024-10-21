@@ -1,5 +1,5 @@
 import { Markdown } from "@/components/markdown";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui/text";
 import usePrice from "@/framework/basic-rest/product/use-price";
 import { Product } from "@/framework/basic-rest/types";
 import useModal from "@/hooks/useModal";

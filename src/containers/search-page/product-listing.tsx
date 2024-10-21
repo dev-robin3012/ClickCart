@@ -2,7 +2,7 @@ import ProductCard from "@/components/product/product-card";
 import Button from "@/components/ui/button";
 import ListBox from "@/components/ui/list-box";
 import ProductFeedLoader from "@/components/ui/loaders/product-feed-loader";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui/text";
 import FilterDrawer from "@/containers/common/filtering/filter-drawer";
 import { Product } from "@/framework/basic-rest/types";
 import {

@@ -1,6 +1,6 @@
 import { Drawer } from "@/components/common/drawer";
 import motionProps from "@/components/common/drawer/motion";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui/text";
 import { useUI } from "@/contexts/ui.context";
 import { getDirection } from "@/utils/get-direction";
 import { useRouter } from "next/router";

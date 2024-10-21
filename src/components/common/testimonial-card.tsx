@@ -1,7 +1,7 @@
 import QuoteIcon from "@/components/icons/quote-icon";
 import QuoteIconRotate from "@/components/icons/quote-icon-rotate";
 import StarIcon from "@/components/icons/star-icon";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui/text";
 import cn from "classnames";
 
 interface Props {

@@ -27,10 +27,10 @@ const AdminSidebar: FC = () => {
           {navigations.map((item) => (
             <li key={item.name}>
               <Link
-                href={item.path}
+                href={item?.path || ""}
                 className={cn(
                   "transition-all hover:bg-gray-light dark:hover:bg-gray-hard",
-                  router.pathname === item.path &&
+                  router.pathname === item?.path &&
                     "bg-gray-light dark:bg-gray-hard text-primary"
                 )}
               >

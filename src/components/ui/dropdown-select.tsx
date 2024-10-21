@@ -2,16 +2,19 @@ import { cn } from "@/utils/class-merge";
 import type { ClassValue } from "clsx";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState, type FC } from "react";
-import Typography from "../typography";
 import Button from "./button";
 
 interface Props {
-  wrapperClassName?: ClassValue;
+  classNames?: {
+    root?: ClassValue;
+    trigger?: ClassValue;
+    dropdown?: ClassValue;
+  };
   label?: string;
   options: { label: string; value: string }[];
 }
 
-const DropdownSelect: FC<Props> = ({ wrapperClassName, label, options }) => {
+const DropdownSelect: FC<Props> = ({ classNames, label, options }) => {
   const [expand, setExpand] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -30,11 +33,11 @@ const DropdownSelect: FC<Props> = ({ wrapperClassName, label, options }) => {
   }, []);
 
   return (
-    <div ref={ref} className={cn("relative", wrapperClassName)}>
+    <div ref={ref} className={cn("relative", classNames?.root)}>
       <Button
         size="sm"
         variant="outlined"
-        className="w-full justify-between"
+        className={cn("w-full justify-between", classNames?.trigger)}
         icon={{
           name: "triangle-arrow-down",
           className: `text-[1.5rem] transition-all ${expand && "rotate-180"}`,
@@ -53,14 +56,14 @@ const DropdownSelect: FC<Props> = ({ wrapperClassName, label, options }) => {
             : { opacity: 0, y: -10, transitionEnd: { display: "none" } }
         }
       >
-        <Typography
+        {/* <Typography
           variant="p2"
           className="py-1.5 px-5 font-semibold text-gray-default/75"
         >
           Select {label}:
-        </Typography>
+        </Typography> */}
 
-        <ul className="[&>li]:py-2 [&>li]:border-t [&>li]:cursor-pointer [&>li]:px-5 ">
+        <ul className="[&>li]:py-2 [&>li]:border-t [&>li]:cursor-pointer [&>li]:px-5">
           {options.map((option, index) => (
             <li key={index} className="transition-all hover:bg-gray-light">
               {option.label}

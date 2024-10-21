@@ -12,9 +12,12 @@ const DashboardProductsListing: FC = () => {
         <Typography variant="h2">Products Management</Typography>
 
         <div className="flex items-center gap-3">
-          <Link href="/dashboard/add-new-product">
+          <Link
+            href="/dashboard/add-new-product"
+            className="flex-1 sm:flex-auto"
+          >
             <Button
-              className="flex-1 sm:flex-auto"
+              className="w-full"
               icon={{ name: "plus", className: "text-lg lg:text-xl" }}
             >
               Add Product
@@ -29,12 +32,15 @@ const DashboardProductsListing: FC = () => {
           </Button>
         </div>
       </div>
-      <ProductsFiltering />
-      {/* Add your products listing here */}
-      <div className="space-y-2 border overflow-hidden rounded-md">
-        <SingleProduct />
-        <SingleProduct />
-        <SingleProduct />
+
+      <div className="space-y-5 bg-white p-5 rounded-md">
+        <ProductsFiltering />
+        {/* Add your products listing here */}
+        <div className="space-y-2 border overflow-hidden rounded-md">
+          <SingleProduct />
+          <SingleProduct />
+          <SingleProduct />
+        </div>
       </div>
     </section>
   );

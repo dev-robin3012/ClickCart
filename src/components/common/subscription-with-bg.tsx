@@ -1,6 +1,6 @@
+import Input from "@/components/input";
 import Button from "@/components/ui/button";
-import Input from "@/components/ui/input";
-import Text from "@/components/ui/text";
+import { TextOld as Text } from "@/components/ui/text";
 import { getDirection } from "@/utils/get-direction";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";

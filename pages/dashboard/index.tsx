@@ -1,6 +1,6 @@
 import Typography from "@/components/typography";
 import AdminLayout from "@/layout/dashboard";
-import { NextPageWithLayout } from "../_app";
+import type { NextPageWithLayout } from "../_app";
 
 // const themes = [
 //   "minimal",

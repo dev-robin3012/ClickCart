@@ -1,5 +1,5 @@
+import Input from "@/components/input";
 import Button from "@/components/ui/button";
-import Input from "@/components/ui/input";
 import Link from "@/components/ui/link";
 import PasswordInput from "@/components/ui/password-input";
 import { SignUpInputType } from "@/framework/basic-rest/auth/use-signup";

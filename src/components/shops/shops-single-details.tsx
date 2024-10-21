@@ -1,16 +1,16 @@
-import StickyBox from "react-sticky-box";
-import { useShopQuery } from "@framework/shop/get-shop";
-import Text from "@components/ui/text";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import { useUI } from "@contexts/ui.context";
-import { getDirection } from "@utils/get-direction";
-import { ProductGrid } from "@containers/search-page/product-grid";
-import Container from "@components/ui/container";
 import { Drawer } from "@components/common/drawer";
+import motionProps from "@components/common/drawer/motion";
 import ShopSidebar from "@components/shops/shop-sidebar";
 import ShopSidebarDrawer from "@components/shops/shop-sidebar-drawer";
-import motionProps from "@components/common/drawer/motion";
+import Container from "@components/ui/container";
+import { Text } from "@components/ui/text";
+import { ProductGrid } from "@containers/search-page/product-grid";
+import { useUI } from "@contexts/ui.context";
+import { useShopQuery } from "@framework/shop/get-shop";
+import { getDirection } from "@utils/get-direction";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import StickyBox from "react-sticky-box";
 
 export default function ShopsSingleDetails() {
   const {

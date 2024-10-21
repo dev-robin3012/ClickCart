@@ -13,7 +13,7 @@ interface Props {
 }
 
 const FileUploadField: FC<Props> = ({
-  label = "Click",
+  label = "Click to upload",
   onChange,
   accept = "",
   disabled,
@@ -22,7 +22,7 @@ const FileUploadField: FC<Props> = ({
   return (
     <div
       className={cn(
-        "flex items-center justify-center border rounded-lg group",
+        "flex items-center justify-center border rounded-lg group border-primary border-dashed",
         disabled && "cursor-not-allowed",
         className
       )}

@@ -1,5 +1,5 @@
 import Button from "@/components/ui/button";
-import Text from "@/components/ui/text";
+import { Text } from "@/components/ui/text";
 import cn from "classnames";
 import Image from "next/image";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";

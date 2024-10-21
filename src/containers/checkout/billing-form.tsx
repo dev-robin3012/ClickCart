@@ -1,4 +1,4 @@
-import Input from "@/components/ui/input";
+import Input from "@/components/input";
 import { FC } from "react";
 
 interface Props {
