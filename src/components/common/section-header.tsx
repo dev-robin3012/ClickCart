@@ -1,4 +1,4 @@
-import { Text } from "@/components/ui/text";
+import { TextOld as Text } from "@/components/ui/text";
 import Link from "next/link";
 
 interface Props {
