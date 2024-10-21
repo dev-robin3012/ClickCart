@@ -1,14 +1,15 @@
 import { cn } from "@/utils/class-merge";
-import type { FC, InputHTMLAttributes } from "react";
+import { forwardRef, type InputHTMLAttributes } from "react";
 import FileUploadField from "./file-upload";
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   size?: "sm" | "md" | "lg";
 }
 
-const Input: FC<Props> = ({ className, size = "md", ...rest }) => {
-  return (
+const Input = forwardRef<HTMLInputElement, Props>(
+  ({ className, size = "md", ...rest }, ref) => (
     <input
+      ref={ref}
       className={cn(
         "block border w-full rounded-md outline-none px-3 placeholder:text-gray-default font-semibold placeholder:font-medium",
         {
@@ -20,7 +21,7 @@ const Input: FC<Props> = ({ className, size = "md", ...rest }) => {
       )}
       {...rest}
     />
-  );
-};
+  )
+);
 
 export { FileUploadField, Input };

@@ -2,6 +2,7 @@ import { type FC } from "react";
 import {
   CrossIcon,
   EditIcon,
+  ListPlusIcon,
   MenuIcon,
   MoonIcon,
   SunIcon,
@@ -39,6 +40,8 @@ const Iconstore: FC<IconProps> = ({ name, ...rest }) => {
       return <EditIcon {...rest} />;
     case "threedot":
       return <ThreeDotIcon {...rest} />;
+    case "list-plus":
+      return <ListPlusIcon {...rest} />;
 
     // placeholder icons
     case "user":

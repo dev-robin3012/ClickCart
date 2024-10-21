@@ -2,7 +2,14 @@ import type { ClassValue } from "clsx";
 
 type IArrowIcons = "arrow-down" | "triangle-arrow-down";
 type IPlaceholderIcons = "plus" | "file-export" | "user" | "image-placeholder";
-type IActionIcons = "edit" | "sun" | "moon" | "menu" | "cross" | "threedot";
+type IActionIcons =
+  | "edit"
+  | "sun"
+  | "moon"
+  | "menu"
+  | "cross"
+  | "threedot"
+  | "list-plus";
 type IIcons = "loader" | "logout";
 
 interface IconProps {

@@ -168,3 +168,22 @@ export const SunIcon: FC<Omit<IconProps, "name">> = ({
     </svg>
   );
 };
+
+export const ListPlusIcon: FC<Omit<IconProps, "name">> = ({
+  className,
+  ...rest
+}) => (
+  <svg
+    stroke="currentColor"
+    fill="currentColor"
+    strokeWidth="0.1"
+    viewBox="0 0 24 24"
+    height="1em"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+    className={cn(className)}
+    {...rest}
+  >
+    <path d="M2 18H12V20H2V18ZM2 11H22V13H2V11ZM2 4H22V6H2V4ZM18 18V15H20V18H23V20H20V23H18V20H15V18H18Z"></path>
+  </svg>
+);

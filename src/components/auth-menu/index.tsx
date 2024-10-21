@@ -35,8 +35,6 @@ const AuthMenu: FC = () => {
 
   const { image, firstName, role } = data.user;
 
-  console.log(role === "admin");
-
   return (
     <div className="relative" ref={ref}>
       <div
