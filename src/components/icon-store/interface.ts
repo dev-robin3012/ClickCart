@@ -9,7 +9,8 @@ type IActionIcons =
   | "menu"
   | "cross"
   | "threedot"
-  | "list-plus";
+  | "list-plus"
+  | "tikmark";
 type IIcons = "loader" | "logout";
 
 interface IconProps {

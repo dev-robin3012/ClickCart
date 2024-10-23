@@ -7,6 +7,7 @@ import {
   MoonIcon,
   SunIcon,
   ThreeDotIcon,
+  TikMarkIcon,
 } from "./actions-icons";
 import { ArrowDown, TriangleArrowDown } from "./arrow-icons";
 import type IconProps from "./interface";
@@ -42,6 +43,8 @@ const Iconstore: FC<IconProps> = ({ name, ...rest }) => {
       return <ThreeDotIcon {...rest} />;
     case "list-plus":
       return <ListPlusIcon {...rest} />;
+    case "tikmark":
+      return <TikMarkIcon {...rest} />;
 
     // placeholder icons
     case "user":

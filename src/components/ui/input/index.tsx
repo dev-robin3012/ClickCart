@@ -1,6 +1,7 @@
 import { cn } from "@/utils/class-merge";
 import { forwardRef, type InputHTMLAttributes } from "react";
 import FileUploadField from "./file-upload";
+import SingleInputBox from "./single-input";
 
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
@@ -25,4 +26,4 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   )
 );
 
-export { FileUploadField, Input };
+export { FileUploadField, Input, SingleInputBox };
